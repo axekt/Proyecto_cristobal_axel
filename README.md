@@ -4,7 +4,7 @@
 
 ## 👥 Autores
 * Cristóbal
-* Chitiño
+* Axel
 
 ## 📌 Descripción
 Este es un proyecto de desarrollo web enfocado en la creación de una interfaz de usuario personalizada. Actualmente, el proyecto cuenta con la estructura base de los archivos web (HTML y CSS) y se encuentra en etapa de experimentación y ajuste de los cimientos visuales.
