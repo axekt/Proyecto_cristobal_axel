@@ -1,12 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>sistema de gestion</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow_x: hidden;
+        }
+
+        .menu-lateral{
+            width: 250px;
+            background-color: #000000;
+            padding: 20px;
+            position:fixed;
+            top: 0;
+            left: -250px;
+            transition: left 0.3s ease;
+            border-right: 1px solid #333;
+            z-index: 1000;
+        }
+        .menu-lateral.abierto{
+            left: 0;
+        }
+
+
+        .menu-lateral h2{ margin-botton: 30px; color:#4caf50; text-align:}
+        .menu-lateral ul{
+            list-style: none;
+        }
+        .menu-lateral li{
+            margin-bottom: 15px;
+        }
+        .menu-lateral a{
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .menu-lateral a:hover{
+            background-color: #333;
+            color: #4caf50;
+        }
+        .menu-lateral h2{
+            margin-bottom: 30px;
+            color: #f7f5f5;
+            text-align: center;
+        }
+
+        .menu-lateral ul{
+            list-style: none;
+        }
+
+        .menu-lateral li{
+            margin-bottom: 15px;
+        }
+        
+        .menu-lateral a{
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .menu-lateral a:hover{
+            background-color: #333;
+            color: #4caf50;
+        }
+
+        .contenido-principal{
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .tarjeta{
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #333;
+        }
+
+        .boton-salir{
+            margin-top: 50px;
+            background-color: #cc0000;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>bienvendido a andes</h1>
-    
+    <nav class="menu-lateral">
+        <h2>panel de gestion</h2>
+        <ul>
+            <li><a href="#">inicio</a></li>
+            <li><a href="#">usuarios</a></li>
+            <li><a href="#">configuracion</a></li>
+            <li><a href="#">reportes</a></li>
+        </ul>
+
+        <button class="boton-salir" onclick="window.location.href='index.html_test2'">salir</button>
+    </nav>
+    <main class="contenido-principal">
+        <h1>bienvenido al sistema</h1>
+        <p style="margin-top: 10px; color: #aaaaaa;">este es un sistema de gestion de usuarios</p>
+
+        <div class="tarjeta">
+            <h3>informacion del sistema</h3>
+            <p style="margin-top: 10px;">esta es la informacion general del sistema de gestion.</p>
+        </div>
+    </main>
 </body>
 </html>
+ 
