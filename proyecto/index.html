@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ingrese su nombre</title>
+    <title>proyecto</title>
+    <style>
+        body{
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        form{
+            margin: 50px;
+        }
+
+        label{
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        input{
+            margin-top: 5px;
+            padding: 5px;
+        }
+
+        .button-ingresar{
+            margin-top: 20px;
+            padding: 8px 15px;
+            cursor: pointer;
+            display: block;
+        }
+        .button-ver{
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvendido a test 1 </h1>
+    <h1>Acceso al sistema</h1>
+    <form>
+        <label for="nombre">Nombre de usuario:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre de usuario" required>
+
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" id="contraseña" name="contraseña" placeholder="Ingrese su contraseña" required>
+    </form>
+    <button>ingresar</button>
+</body>
+</html>
