@@ -7,14 +7,23 @@
             background:radial-gradient(circle, rgb(192, 94, 192), pink, black );
             color: white;
             font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
         form{
-            margin: 50px;
+            height: 100vh;
+            margin: 40px;
+             
         }
 
         label{
             display: block;
-            margin-bottom: 15px;
+            margin-bottom: 20px
+            position fixed;
         }
 
         input{
@@ -28,34 +37,95 @@
             cursor: pointer;
             display: block;
         }
-        .button-ver{
-            padding: 5px 10px;
+
+        .area-registro{
+            margin-top: 25px;
+            font-size: 14px;
+        }
+
+        .enlace-registro{
+            color: white;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .enlace-registro:hover{
+            color: #e50914;
+        }
+
+        .contenedor-mostrar{
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .conternedor-mostrar input{
+            margin: 0;
+            margin-right: 8px;
             cursor: pointer;
-            margin-left: 5px;
+        }
+
+        .texto-mostrar{
+            margin: 0;
+            font-size: 14px;
+            display: inline;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <h1>Bienvendido a test 1 </h1>
     <h1>Acceso al sistema</h1>
-    <form action="index.html_test2">
+    <form id="formularioLogin">
         <label for="nombre">Nombre de usuario:</label>
         <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre de usuario" required>
 
         <label for="contraseña">Contraseña:</label>
-        <input type="password" id="contraseña" name="contraseña" placeholder="Ingrese su contraseña" required>
         
-        <button type="button" id="btnIngresar" class="button-ingresar">ingresar</button>
+        <input type="password" id="contraseña" name="contraseña" placeholder="Ingrese su contraseña" required>
+        <div class="contenedor-mostrar">
+            <input type="checkbox" id="mostrar">
+            <label for="mostraclave" class="texto-mostrar">mostrar contraseña</label>
+        </div> 
+        
+        <div class="area-registro">
+            registrate <a href="registro.html" class="enlace-registro">aqui</a>
+        </div>
+        <button type="submit" id="btnIngresar" class="button-ingresar">ingresar</button>
+    
     </form>
 
     <script>
         
-        const boton = document.getElementById('btnIngresar');
+        const formulario = document.getElementById('formularioLogin');
 
-       boton.addEventListener("click", function() {
+       formulario.addEventListener("submit", function(evento) {
 
-        window.location.href = "index.html_test2";
+        evento.preventDefault(); 
+
+        const valorNombre = document.getElementById('nombre').value;
+        const valorContraseña = document.getElementById('contraseña').value;
+
+        if(valorNombre.trim() !== "" && valorContraseña.trim() !==""){
+            
+            window.location.href = "test2.html";
+
+        }else{
+            console.log("faltan datos");
+        }
+       
        });
+
+       const mostrarCheckbox = document.getElementById('mostrar');
+        const contraseñaInput = document.getElementById('contraseña');
+
+        mostrarCheckbox.addEventListener('change', function(){
+            if(mostrarCheckbox.checked){
+                contraseñaInput.type = 'text';
+            }else{
+                contraseñaInput.type = 'password';
+            }
+        });
     </script>
 </body>
 </html>
