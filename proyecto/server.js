@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 app.post('/login', (req, res) => {
     // Captura los datos del formulario
     const usuario = req.body.nombre;
-    const password = req.body['contrase a']; // Respetando el atributo name de tu input
+    const password = req.body.password; // Actualizado al nuevo nombre
 
     // Validación estática
     if (usuario === "admin" && password === "12345") {
