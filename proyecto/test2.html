@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <title>sistema de gestion</title>
     <style>
@@ -13,44 +13,26 @@
             background-color: #121212;
             color: white;
             font-family: Arial, sans-serif;
-            overflow_x: hidden;
+            overflow-x: hidden;
         }
 
         .menu-lateral{
-            width: 250px;
+            width: 200px;
+            height: 100vh;
             background-color: #000000;
             padding: 20px;
             position:fixed;
             top: 0;
-            left: -250px;
+            left: -200px;
             transition: left 0.3s ease;
             border-right: 1px solid #333;
             z-index: 1000;
         }
+        
         .menu-lateral.abierto{
             left: 0;
         }
 
-
-        .menu-lateral h2{ margin-botton: 30px; color:#4caf50; text-align:}
-        .menu-lateral ul{
-            list-style: none;
-        }
-        .menu-lateral li{
-            margin-bottom: 15px;
-        }
-        .menu-lateral a{
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 10px;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-        .menu-lateral a:hover{
-            background-color: #333;
-            color: #4caf50;
-        }
         .menu-lateral h2{
             margin-bottom: 30px;
             color: #f7f5f5;
@@ -84,6 +66,7 @@
             flex: 1;
             padding: 40px;
             overflow-y: auto;
+            transition: margin-left 0.3s ease;
         }
 
         .tarjeta{
@@ -101,24 +84,46 @@
             border: none;
             padding: 10px;
             width: 100%;
-            border-radius: 5px;
+            border-radius: 250px;
             cursor: pointer;
+        }
+
+        .boton-menu {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .boton-menu:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
-    <nav class="menu-lateral">
+    <nav id="miMenu" class="menu-lateral">
         <h2>panel de gestion</h2>
         <ul>
             <li><a href="#">inicio</a></li>
+             <li><a href="#">buscar</a></li>
             <li><a href="#">usuarios</a></li>
             <li><a href="#">configuracion</a></li>
             <li><a href="#">reportes</a></li>
         </ul>
 
-        <button class="boton-salir" onclick="window.location.href='index.html_test2'">salir</button>
+        <form action="index.html">
+        
+        <button type="submit" class="boton-salir">cerrar sesion</button>
     </nav>
-    <main class="contenido-principal">
+</form>
+    <main id="contenido" class="contenido-principal">
+        
+        <button id="btnAbrirMenu" class="boton-menu">☰</button>
+
         <h1>bienvenido al sistema</h1>
         <p style="margin-top: 10px; color: #aaaaaa;">este es un sistema de gestion de usuarios</p>
 
@@ -127,6 +132,23 @@
             <p style="margin-top: 10px;">esta es la informacion general del sistema de gestion.</p>
         </div>
     </main>
+
+    <script>
+        const menu = document.getElementById("miMenu");
+        const btnAbrirMenu = document.getElementById("btnAbrirMenu");
+        const contenido = document.getElementById("contenido");
+
+        btnAbrirMenu.addEventListener("click", function() {
+            menu.classList.toggle("abierto");
+
+            if (menu.classList.contains("abierto")) {
+                btnAbrirMenu.innerHTML = "✖";
+                contenido.style.marginLeft = "250px"; 
+            } else {
+                btnAbrirMenu.innerHTML = "☰";
+                contenido.style.marginLeft = "0"; 
+            }
+        });
+    </script>
 </body>
 </html>
- 
