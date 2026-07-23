@@ -102,7 +102,7 @@
     <h1>Bienvenido a test 1</h1>
     <h2>Acceso al sistema</h2>
     
-    <form id="formularioLogin">
+    <form id="formularioLogin" action="procesar_login.php" method="POST">
         
         <label for="nombre">Nombre de usuario:</label>
         <input type="text" id="nombre" name="nombre" placeholder="Ingrese su usuario" required>
@@ -125,20 +125,6 @@
 
     <script>
 
-        const formulario = document.getElementById('formularioLogin');
-
-        formulario.addEventListener("submit", function(evento) {
-            evento.preventDefault(); 
-
-            const valorNombre = document.getElementById('nombre').value;
-            const valorClave = document.getElementById('clave').value;
-
-            if (valorNombre.trim() !== "" && valorClave.trim() !== "") {
-                window.location.href = "test2.html";
-            } else {
-                console.log("Faltan datos");
-            }
-        });
         const mostrarCheckbox = document.getElementById('mostrar');
         const claveInput = document.getElementById('clave');
 

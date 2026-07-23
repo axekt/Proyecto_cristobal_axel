@@ -1,11 +1,11 @@
 <?php
 
 $servidor = "localhost";
-$usuaio_db = "root";
+$usuario_db = "root";
 $clave_db = "";
 $nombre_bd = "sistema_db";
 
-$conexion = new mysqli($servidor, $usuaio_db, $clave_db, $nombre_bd);
+$conexion = new mysqli($servidor, $usuario_db, $clave_db, $nombre_bd);
 
 if($conexion ->connect_error){
     die("Error de conexion: " . $conexion->connect_eror);
