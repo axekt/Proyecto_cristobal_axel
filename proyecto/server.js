@@ -15,19 +15,14 @@ app.get('/', (req, res) => {
 
 // Ruta para procesar el inicio de sesión
 app.post('/login', (req, res) => {
-    // Captura los datos del formulario
     const usuario = req.body.nombre;
-    const password = req.body.password; // Actualizado al nuevo nombre
+    const password = req.body.password;
 
-    // Validación estática
     if (usuario === "admin" && password === "12345") {
         res.sendFile(path.join(__dirname, 'test2.html'));
     } else {
-        res.send(`
-            <h1 style="color:red; text-align:center; font-family:Arial;">Acceso Denegado</h1>
-            <p style="text-align:center; font-family:Arial;">Usuario o contraseña incorrectos.</p>
-            <div style="text-align:center;"><a href='/'>Volver al inicio</a></div>
-        `);
+        // En lugar de res.send, enviamos el nuevo archivo HTML
+        res.sendFile(path.join(__dirname, 'denegado.html'));
     }
 });
 
