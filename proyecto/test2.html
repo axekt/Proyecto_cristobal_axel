@@ -1,154 +1,238 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>sistema de gestion</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Gestión</title>
     <style>
-        *{
+        /* Estilos base */
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body{
-            background-color: #121212;
-            color: white;
             font-family: Arial, sans-serif;
-            overflow-x: hidden;
-        }
-
-        .menu-lateral{
-            width: 200px;
+            background-color: #121212; /* Fondo oscuro principal */
+            color: white;
+            display: flex;
             height: 100vh;
+        }
+
+        /* BARRA LATERAL (Sidebar) */
+        .sidebar {
+            width: 250px;
             background-color: #000000;
-            padding: 20px;
-            position:fixed;
-            top: 0;
-            left: -200px;
-            transition: left 0.3s ease;
-            border-right: 1px solid #333;
-            z-index: 1000;
+            padding: 30px 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #222;
         }
-        
-        .menu-lateral.abierto{
-            left: 0;
+        .sidebar h2 {
+            margin-top: 0;
+            font-size: 26px;
+            margin-bottom: 50px;
+            line-height: 1.2;
         }
-
-        .menu-lateral h2{
-            margin-bottom: 30px;
-            color: #f7f5f5;
-            text-align: center;
-        }
-
-        .menu-lateral ul{
-            list-style: none;
-        }
-
-        .menu-lateral li{
-            margin-bottom: 15px;
-        }
-        
-        .menu-lateral a{
+        .sidebar a {
             color: white;
             text-decoration: none;
+            margin-bottom: 25px;
             font-size: 16px;
-            display: block;
-            padding: 10px;
-            border-radius: 5px;
-            transition: 0.3s;
         }
-
-        .menu-lateral a:hover{
-            background-color: #333;
-            color: #4caf50;
+        .sidebar a:hover {
+            color: #d90429;
         }
-
-        .contenido-principal{
-            flex: 1;
-            padding: 40px;
-            overflow-y: auto;
-            transition: margin-left 0.3s ease;
-        }
-
-        .tarjeta{
-            background-color: #1e1e1e;
-            padding: 20px;
+        .btn-logout {
+            margin-top: auto;
+            background-color: #d90429;
+            color: white;
+            border: none;
+            padding: 12px;
             border-radius: 8px;
-            margin-top: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+        }
+        .btn-logout:hover {
+            background-color: #b00322;
+        }
+        
+        /* CONTENIDO PRINCIPAL */
+        .main-content {
+            flex: 1;
+            padding: 50px;
+            box-sizing: border-box;
+            overflow-y: auto; /* Permite hacer scroll si hay muchas publicaciones */
+        }
+        .main-content h1 {
+            margin-top: 0;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #aaa;
+            margin-bottom: 40px;
+        }
+
+        /* Tarjeta de Información */
+        .info-card {
+            background-color: #1e1e1e;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 40px;
             border: 1px solid #333;
         }
 
-        .boton-salir{
-            margin-top: 50px;
-            background-color: #cc0000;
+        /* SISTEMA DE PUBLICACIONES - Estilos ajustados al tema */
+        .publish-box {
+            background-color: #1e1e1e;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid #333;
+        }
+        .publish-box textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #121212;
+            color: white;
+            border: 1px solid #444;
+            resize: vertical;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 15px;
+        }
+        .btn-publicar {
+            background-color: #d90429;
             color: white;
             border: none;
-            padding: 10px;
-            width: 100%;
-            border-radius: 250px;
+            padding: 10px 25px;
+            border-radius: 8px;
+            margin-top: 15px;
             cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .btn-publicar:hover {
+            background-color: #b00322;
         }
 
-        .boton-menu {
-            background-color: #333;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
+        /* Tarjetas del Muro (Feed) */
+        .post-card {
+            background-color: #1e1e1e;
+            padding: 25px;
+            border-radius: 12px;
             margin-bottom: 20px;
+            border: 1px solid #333;
         }
-        
-        .boton-menu:hover {
-            background-color: #555;
+        .post-card h4 {
+            margin: 0 0 15px 0;
+            color: #d90429; /* Nombre en rojo para combinar */
+            font-size: 18px;
+        }
+        .post-card p {
+            margin: 0 0 15px 0;
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+        .post-card small {
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <nav id="miMenu" class="menu-lateral">
-        <h2>panel de gestion</h2>
-        <ul>
-            <li><a href="#">inicio</a></li>
-             <li><a href="#">buscar</a></li>
-            <li><a href="#">usuarios</a></li>
-            <li><a href="#">configuracion</a></li>
-            <li><a href="#">reportes</a></li>
-        </ul>
 
-        <form action="index.html">
+    <!-- BARRA LATERAL RESTAURADA -->
+    <div class="sidebar">
+        <h2>panel de<br>gestion</h2>
+        <a href="#">inicio</a>
+        <a href="#">buscar</a>
+        <a href="#">usuarios</a>
+        <a href="#">configuracion</a>
+        <a href="#">reportes</a>
         
-        <button type="submit" class="boton-salir">cerrar sesion</button>
-    </nav>
-</form>
-    <main id="contenido" class="contenido-principal">
-        
-        <button id="btnAbrirMenu" class="boton-menu">☰</button>
+        <!-- Botón de cerrar sesión -->
+        <a href="/" class="btn-logout">cerrar sesion</a>
+    </div>
 
+    <!-- ÁREA DE CONTENIDO -->
+    <div class="main-content">
         <h1>bienvenido al sistema</h1>
-        <p style="margin-top: 10px; color: #aaaaaa;">este es un sistema de gestion de usuarios</p>
+        <p class="subtitle">este es un sistema de gestion de usuarios</p>
 
-        <div class="tarjeta">
-            <h3>informacion del sistema</h3>
-            <p style="margin-top: 10px;">esta es la informacion general del sistema de gestion.</p>
+        <!-- Tarjeta original de información -->
+        <div class="info-card">
+            <h3 style="margin-top:0;">informacion del sistema</h3>
+            <p style="margin-bottom:0; color:#ccc;">esta es la informacion general del sistema de gestion.</p>
         </div>
-    </main>
 
+        <!-- CAJA PARA CREAR PUBLICACIÓN -->
+        <div class="publish-box">
+            <h3 style="margin-top: 0;">Nueva Publicación</h3>
+            <textarea id="contenidoPost" placeholder="¿Qué quieres compartir con los demás usuarios?" rows="3"></textarea>
+            <button class="btn-publicar" onclick="crearPublicacion()">Publicar</button>
+        </div>
+
+        <!-- MURO DE PUBLICACIONES (FEED) -->
+        <div id="feedPublicaciones">
+            <p style="color: #888;">Cargando muro...</p>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE CONEXIÓN CON TU SERVIDOR -->
     <script>
-        const menu = document.getElementById("miMenu");
-        const btnAbrirMenu = document.getElementById("btnAbrirMenu");
-        const contenido = document.getElementById("contenido");
+        async function cargarPublicaciones() {
+            try {
+                const respuesta = await fetch('/api/publicaciones');
+                const publicaciones = await respuesta.json();
+                
+                const feed = document.getElementById('feedPublicaciones');
+                feed.innerHTML = ''; 
+                
+                if (publicaciones.length === 0) {
+                    feed.innerHTML = '<p style="color: #888;">No hay publicaciones aún.</p>';
+                    return;
+                }
 
-        btnAbrirMenu.addEventListener("click", function() {
-            menu.classList.toggle("abierto");
-
-            if (menu.classList.contains("abierto")) {
-                btnAbrirMenu.innerHTML = "✖";
-                contenido.style.marginLeft = "250px"; 
-            } else {
-                btnAbrirMenu.innerHTML = "☰";
-                contenido.style.marginLeft = "0"; 
+                publicaciones.forEach(post => {
+                    feed.innerHTML += `
+                        <div class="post-card">
+                            <h4>${post.nombre_usuario}</h4>
+                            <p>${post.contenido}</p>
+                            <small>${new Date(post.fecha_publicacion).toLocaleString()}</small>
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById('feedPublicaciones').innerHTML = '<p style="color: red;">Error al cargar las publicaciones desde el servidor.</p>';
             }
-        });
+        }
+
+        async function crearPublicacion() {
+            const contenido = document.getElementById('contenidoPost').value;
+            if (!contenido.trim()) return alert("Debes escribir algo para publicar.");
+
+            // Se asume que en XAMPP existe el usuario_id = 1
+            const datos = { usuario_id: 1, contenido: contenido };
+
+            try {
+                await fetch('/api/publicaciones', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(datos)
+                });
+
+                document.getElementById('contenidoPost').value = ''; 
+                cargarPublicaciones(); 
+            } catch (error) {
+                console.error("Error al publicar:", error);
+            }
+        }
+
+        // Cargar las publicaciones al entrar a la página
+        cargarPublicaciones();
     </script>
 </body>
 </html>
