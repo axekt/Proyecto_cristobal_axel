@@ -1,114 +1,154 @@
-<!DOCTYPE html> 
-<html lang="es"> 
-<head>     
-    <title>ingrese su nombre</title>     
-    <style>         
-        body {             
-            background: radial-gradient(circle, rgb(192, 94, 192), pink, black);             
-            color: white;             
-            font-family: Arial, sans-serif;             
-            margin: 0;             
-            display: flex;             
-            flex-direction: column;             
-            align-items: center;             
-            justify-content: center;             
-            height: 100vh;         
-        }         
-        form {             
-            margin: 40px;                       
-        }         
-        label {             
-            display: block;             
-            margin-bottom: 20px; 
-            position: fixed;
-        }         
-        input {             
-            margin-top: 5px;             
-            padding: 5px;         
-        }         
-        .button-ingresar {             
-            margin-top: 20px;             
-            padding: 8px 15px;             
-            cursor: pointer;             
-            display: block;         
-        }         
-        .area-registro {             
-            margin-top: 25px;             
-            font-size: 14px;         
-        }         
-        .enlace-registro {             
-            color: white;             
-            text-decoration: underline;             
-            font-weight: bold;         
-        }         
-        .enlace-registro:hover {             
-            color: #e50914;         
-        }         
-        .contenedor-mostrar {             
-            margin-top: 10px;             
-            display: flex;             
-            align-items: center;         
-        }         
-        
-        .contenedor-mostrar input {             
-            margin: 0;             
-            margin-right: 8px;             
-            cursor: pointer;         
-        }         
-        .texto-mostrar {             
-            margin: 0;             
-            font-size: 14px;             
-            display: inline;             
-            cursor: pointer;         
-        }     
-    </style> 
-</head> 
-<body>     
-    <h1>Bienvenido a test 1 </h1>     
-    <h1>Acceso al sistema</h1>     
-    <form id="formularioLogin">         
-        <label for="nombre">Nombre de usuario:</label>         
-        <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre de usuario" required>         
-        
-        <label for="clave">Contraseña:</label>                  
-        <input type="password" id="clave" name="clave" placeholder="Ingrese su contraseña" required>         
-        
-        <div class="contenedor-mostrar">             
-            <input type="checkbox" id="mostrar">             
-            <label for="mostrar" class="texto-mostrar">mostrar contraseña</label>         
-        </div>                   
-        
-        <div class="area-registro">             
-            registrate <a href="registrarse.html" class="enlace-registro">aqui</a>         
-        </div>         
-        
-        <button type="submit" id="btnIngresar" class="button-ingresar">ingresar</button>          
-    </form>     
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Acceso al sistema</title>
+    
+    <style>
+        body {
+            background: radial-gradient(circle, rgb(211, 168, 51), rgb(189, 124, 3), black);
+            color: black;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
 
-    <script>                  
-        const formulario = document.getElementById('formularioLogin');        
-        
-        formulario.addEventListener("submit", function(evento) {         
-            evento.preventDefault();          
-            
-            const valorNombre = document.getElementById('nombre').value;         
-            const valorClave = document.getElementById('clave').value; 
-            if(valorNombre.trim() !== "" && valorClave.trim() !== "") {                          
-                window.location.href = "test2.html";         
-            } else {             
-                console.log("faltan datos");         
-            }                
-        });        
+        form {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
 
-        const mostrarCheckbox = document.getElementById('mostrar');         
-        const claveInput = document.getElementById('clave'); 
-        mostrarCheckbox.addEventListener('change', function(){             
-            if(mostrarCheckbox.checked){                 
-                claveInput.type = 'text';             
-            } else {                 
-                claveInput.type = 'password';             
-            }         
-        });     
-    </script> 
-</body> 
+        h1, h2 {
+            margin: 5px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding: 8px;
+            width: 200px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+
+        .contenedor-mostrar {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contenedor-mostrar input {
+            margin: 0;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .texto-mostrar {
+            margin: 0;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .area-registro {
+            margin-top: 25px;
+            font-size: 14px;
+        }
+
+        .enlace-registro {
+            color: white;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .enlace-registro:hover {
+            color: #e50914;
+        }
+
+        .button-ingresar {
+            margin: 20px auto 0 auto;
+            padding: 10px 20px;
+            cursor: pointer;
+            display: block;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .button-ingresar:hover {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Bienvenido a test 1</h1>
+    <h2>Acceso al sistema</h2>
+    
+    <form id="formularioLogin">
+        
+        <label for="nombre">Nombre de usuario:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ingrese su usuario" required>
+
+        <label for="clave">Contraseña:</label>
+        <input type="password" id="clave" name="clave" placeholder="Ingrese su contraseña" required>
+        
+        <div class="contenedor-mostrar">
+            <input type="checkbox" id="mostrar">
+            <label for="mostrar" class="texto-mostrar">Mostrar contraseña</label>
+        </div> 
+        
+        <div class="area-registro">
+            ¿No tienes cuenta? <a href="registrarse.html" class="enlace-registro">Regístrate aquí</a>
+        </div>
+        
+        <button type="submit" id="btnIngresar" class="button-ingresar">Ingresar</button>
+    
+    </form>
+
+    <script>
+
+        const formulario = document.getElementById('formularioLogin');
+
+        formulario.addEventListener("submit", function(evento) {
+            evento.preventDefault(); 
+
+            const valorNombre = document.getElementById('nombre').value;
+            const valorClave = document.getElementById('clave').value;
+
+            if (valorNombre.trim() !== "" && valorClave.trim() !== "") {
+                window.location.href = "test2.html";
+            } else {
+                console.log("Faltan datos");
+            }
+        });
+        const mostrarCheckbox = document.getElementById('mostrar');
+        const claveInput = document.getElementById('clave');
+
+        mostrarCheckbox.addEventListener('change', function() {
+            if (mostrarCheckbox.checked) {
+                claveInput.type = 'text';
+            } else {
+                claveInput.type = 'password';
+            }
+        });
+    </script>
+</body>
 </html>

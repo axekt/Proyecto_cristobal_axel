@@ -1,141 +1,151 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-   <title>Crear Cuenta</title>
+<!DOCTYPE html> 
+<html lang="es"> 
+<head>    
+    <meta charset="UTF-8">
+    <title>Crear Cuenta</title>    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">    
+    <style>     
+        body {         
+            background-color: #d39d56;         
+            font-family: Arial, sans-serif;         
+            margin: 0;         
+            display: flex;         
+            justify-content: center;         
+            align-items: center;         
+            height: 100vh;     
+        }     
+        .contenedor-formulario {         
+            background-color: #454547;         
+            padding: 40px;         
+            border-radius: 10px;         
+            width: 350px;         
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.2);     
+        }     
+        .contenedor-formulario h2 {         
+            color: #00a8cc;         
+            text-align: center;         
+            margin-bottom: 30px;         
+            font-size: 18px;         
+            letter-spacing: 1px;     
+        }     
+        .grupo-input {         
+            background-color: #5e4c5a;         
+            border-radius: 25px;         
+            display: flex;         
+            align-items: center;         
+            padding: 10px 15px;         
+            margin-bottom: 15px;     
+        }     
+        .grupo-input .icono-circulo {         
+            background-color: white;         
+            color: #5e4c5a;         
+            border-radius: 50%;         
+            width: 25px;         
+            height: 25px;         
+            display: flex;         
+            justify-content: center;         
+            align-items: center;         
+            font-size: 12px;         
+            margin-right: 15px;     
+        }     
+        .grupo-input input {         
+            background-color: transparent;         
+            border: none;         
+            color: white;         
+            width: 100%;         
+            font-size: 14px;         
+            outline: none;     
+        }     
+        .grupo-input input::placeholder {         
+            color: #dddddd;         
+            font-weight: bold;          
+        }     
+        .grupo-checkboxes {         
+            display: flex;         
+            justify-content: space-between;         
+            margin-bottom: 25px;
+            color: #aaaaaa;
+            font-size: 12px;
+        }     
+        .grupo-checkboxes input {         
+            margin-right: 5px;         
+            cursor: pointer;     
+        }     
+        .boton-registro {         
+            background-color: #008cd0;         
+            color: white;         
+            border: none;         
+            border-radius: 25px;         
+            width: 100%;         
+            padding: 15px;         
+            font-weight: bold;         
+            letter-spacing: 2px;         
+            cursor: pointer;         
+            transition: 0.3s;     
+        }     
+        .boton-registro:hover {         
+            background-color: #006da6;     
+        }    
+    </style> 
+</head> 
+<body>     
+    <div class="contenedor-formulario">         
+        <h2>CREA TU CUENTA</h2>         
+      <form action="procesar_registro.php" method="POST">            
+            
+            <div class="grupo-input">                 
+                <div class="icono-circulo"><i class="fas fa-user"></i></div>                     
+                <input type="text" name="nombre_usuario" placeholder="Nombre Completo" required>             
+            </div>             
+            
+            <div class="grupo-input">                 
+                <div class="icono-circulo"><i class="fas fa-envelope"></i></div>                 
+                <input type="email" name="correo_usuario" placeholder="Email" required>             
+            </div>             
+            
+            <div class="grupo-input">                 
+                <div class="icono-circulo"><i class="fas fa-lock"></i></div>                 
+                <input type="password" id="claveRegistro" name="clave_usuario" placeholder="Contraseña" required>             
+            </div>             
+            
+            <div class="grupo-input">                 
+                <div class="icono-circulo"><i class="fas fa-lock"></i></div>                 
+                <input type="password" id="confirmarClave" name="confirmar_clave" placeholder="Confirme su Contraseña" required>             
+            </div>             
+            
+            <div class="grupo-input">                 
+                <div class="icono-circulo"><i class="fas fa-phone"></i></div>                 
+                <input type="tel" name="telefono_usuario" placeholder="Numero de telefono">             
+            </div>             
 
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-   <style>
-    body{
-        background-color: #ebd5b9;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-
-    .contenedor-formulario{
-        background-color: #454547;
-        padding: 40px;
-        border-radius: 10px;
-        width: 350px;
-        box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
-    }
-
-    .contenedor-formulario h2{
-        color: #00a8cc;
-        text-align: center;
-        margin-bottom: 30px;
-        font-size: 18px;
-        letter-spacing: 1px;
-    }
-
-    .grupo-input{
-        background-color: #5e4c5a;
-        border-radius: 25px;
-        display: flex;
-        align-items: center;
-        padding: 10px  15px;
-        margin-bottom: 15px;
-    }
-
-    .grupo-input .icono-circulo{
-        background-color: white;
-        color: #5e4c5a;
-        border-radius: 50%;
-        width: 25px;
-        height: 25px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 12px;
-        margin-right: 15px;
-    }
-
-
-    .grupo-input input{
-        background-color: transparent;
-        border: none;
-        color: white;
-        width: 100%;
-        font-size: 14px;
-        outline: none;
-    }
-
-    .grupo-input input::placeholder{
-        color: #dddddd;
-        font-weight: bold;
-    
-    }
-
-    .grupo-checkboxes{
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 25px;
-    }
-
-    .grupo-checkboxes input{
-        margin-right: 5px;
-        cursor: pointer;
-    }
-
-    .boton-registro{
-        background-color: #008cd0;
-        color: white;
-        border: none;
-        border-radius: 25px;
-        width: 100%;
-        padding: 15px;
-        font-weight: bold;
-        letter-spacing: 2px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .boton-registro:hover{
-        background-color: #006da6;
-    }
-   </style>
-</head>
-<body>
-    <div class="contenedor-formulario">
-        <h2>Crea tu Cuenta</h2>
-
-        <form action="index.html">
-            <div class="grupo-input">
-                <div class="icono-circulo"><i class="fas fa-user"></i></div>
-                    <input type="text" placeholder="Nombre Completo" required>
+            <div class="grupo-checkboxes" style="justify-content: center; margin-bottom: 15px;">
+                <label style="cursor: pointer;"><input type="checkbox" id="mostrarClaves"> Mostrar contraseñas</label>
             </div>
 
-            <div class="grupo-input">
-                <div class="icono-circulo"><i class="fas fa-envelope"></i></div>
-                <input type="email" placeholder="Email" required>
-            </div>
+            <div class="grupo-checkboxes">                 
+                <label><input type="checkbox"> Estoy de acuerdo</label>                 
+                <label><input type="checkbox" required> Acepto los términos</label>             
+            </div>             
+            
+            <button type="submit" class="boton-registro">REGÍSTRATE</button>         
+        
+        </form>     
+    </div> 
 
-            <div class="grupo-input">
-                <div class="icono-circulo"><i class="fas fa-lock"></i></div>
-                <input type="password" placeholder="Contraseña" required>
-            </div>
+    <script>
+        const mostrarClavesCheckbox = document.getElementById('mostrarClaves');
+        const claveInput = document.getElementById('claveRegistro');
+        const confirmarInput = document.getElementById('confirmarClave');
 
-            <div class="grupo-input">
-                <div class="icono-circulo"><i class="fas fa-lock"></i></div>
-                <input type="password" placeholder="Confirme su Contrasena" required>
-            </div>
-
-            <div class="grupo-input">
-                <div class="icono-circulo"><i class="fas fa-phone"></i></div>
-                <input type="tel" placeholder="Numero de telefono">
-            </div>
-
-            <div class="grupo-input">
-                <label><input type="checkbox">estoy de acuerdo</label>
-                <label><input type="checkbox">aceptas los terminos</label>
-            </div>
-
-            <button type="submit" class="boton-registro">Registrate</button>
-        </form>
-    </div>
-</body>
+        mostrarClavesCheckbox.addEventListener('change', function() {
+            if (mostrarClavesCheckbox.checked) {
+                claveInput.type = 'text';
+                confirmarInput.type = 'text';
+            } else {
+                claveInput.type = 'password';
+                confirmarInput.type = 'password';
+            }
+        });
+    </script>
+</body> 
 </html>
