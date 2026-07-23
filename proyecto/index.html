@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <title>ingrese su nombre</title>
+    <title>Acceso al sistema</title>
     <style>
-        body{
-            background:radial-gradient(circle, rgb(192, 94, 192), pink, black );
+        body {
+            background: radial-gradient(circle, rgb(192, 94, 192), pink, black);
             color: white;
             font-family: Arial, sans-serif;
             margin: 0;
@@ -14,109 +14,111 @@
             justify-content: center;
             height: 100vh;
         }
-        form{
-            height: 100vh;
-            margin: 40px;
-             
+
+        form {
+            text-align: center;
         }
 
-        label{
+        label {
             display: block;
-            margin-bottom: 20px
-            position fixed;
+            margin-bottom: 5px;
         }
 
-        input{
-            margin-top: 5px;
-            padding: 5px;
+        input[type="text"], input[type="password"] {
+            margin-bottom: 15px;
+            padding: 8px;
+            width: 200px;
         }
 
-        .button-ingresar{
-            margin-top: 20px;
+        .button-ingresar {
+            margin: 20px auto 0 auto;
             padding: 8px 15px;
             cursor: pointer;
             display: block;
         }
 
-        .area-registro{
+        .area-registro {
             margin-top: 25px;
             font-size: 14px;
         }
 
-        .enlace-registro{
+        .enlace-registro {
             color: white;
             text-decoration: underline;
             font-weight: bold;
         }
 
-        .enlace-registro:hover{
+        .enlace-registro:hover {
             color: #e50914;
         }
 
-        .contenedor-mostrar{
-            margin-top: 10px;
+        .contenedor-mostrar {
+            margin-top: 5px;
             display: flex;
+            justify-content: center;
             align-items: center;
         }
 
-        .conternedor-mostrar input{
+        .contenedor-mostrar input {
             margin: 0;
             margin-right: 8px;
             cursor: pointer;
         }
 
-        .texto-mostrar{
+        .texto-mostrar {
             margin: 0;
             font-size: 14px;
-            display: inline;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <h1>Bienvendido a test 1 </h1>
+    
+    <h1>Bienvenido a test 1 </h1>
     <h1>Acceso al sistema</h1>
+    
     <form id="formularioLogin">
+        
         <label for="nombre">Nombre de usuario:</label>
         <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre de usuario" required>
 
         <label for="contraseña">Contraseña:</label>
-        
         <input type="password" id="contraseña" name="contraseña" placeholder="Ingrese su contraseña" required>
+        
         <div class="contenedor-mostrar">
             <input type="checkbox" id="mostrar">
-            <label for="mostraclave" class="texto-mostrar">mostrar contraseña</label>
+            <!-- Se corrigió el 'for' para que coincida con el 'id' del checkbox -->
+            <label for="mostrar" class="texto-mostrar">mostrar contraseña</label>
         </div> 
         
         <div class="area-registro">
-            registrate <a href="registro.html" class="enlace-registro">aqui</a>
+            registrate <a href="registrarse.html" class="enlace-registro">aqui</a>
         </div>
+        
         <button type="submit" id="btnIngresar" class="button-ingresar">ingresar</button>
     
     </form>
 
     <script>
-        
+        // 1. Lógica del inicio de sesión
         const formulario = document.getElementById('formularioLogin');
 
-       formulario.addEventListener("submit", function(evento) {
+        formulario.addEventListener("submit", function(evento) {
+            evento.preventDefault(); 
 
-        evento.preventDefault(); 
+            const valorNombre = document.getElementById('nombre').value;
+            const valorContraseña = document.getElementById('contraseña').value;
 
-        const valorNombre = document.getElementById('nombre').value;
-        const valorContraseña = document.getElementById('contraseña').value;
+            // ¡Aquí estaba el error! Aseguramos que la llave '{' esté presente
+            if(valorNombre.trim() !== "" && valorContraseña.trim() !==""){
+                window.location.href = "test2.html";
+            }else{
+                console.log("faltan datos");
+            }
+        });
 
-        if(valorNombre.trim() !== "" && valorContraseña.trim() !==""){
-            
-            window.location.href = "test2.html";
-
-        }else{
-            console.log("faltan datos");
-        }
-       
-       });
-
-       const mostrarCheckbox = document.getElementById('mostrar');
+        // 2. Lógica para mostrar u ocultar la contraseña
+        const mostrarCheckbox = document.getElementById('mostrar');
         const contraseñaInput = document.getElementById('contraseña');
 
         mostrarCheckbox.addEventListener('change', function(){
