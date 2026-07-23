@@ -54,6 +54,10 @@ app.post('/api/publicaciones', (req, res) => {
     });
 });
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // Endpoint 2: Enviar todas las publicaciones al feed para que se vean en pantalla
 app.get('/api/publicaciones', (req, res) => {
     // Busca las publicaciones y las une con el nombre del autor
